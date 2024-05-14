@@ -128,7 +128,7 @@ printcp(tree)
 # It helps in selecting an appropriate CP value for pruning the tree and avoiding overfitting.
 
 plotcp(tree)
-C:/Users/ELITEBOOK/OneDrive/Pictures/Documents/Data Science with R/Regression-Trees-/Regression analysis/optimal value of the complexity parameter for pruning the tree.png
+![plot] (C:/Users/ELITEBOOK/OneDrive/Pictures/Documents/Data Science with R/Regression-Trees-/Regression analysis/optimal value of the complexity parameter for pruning the tree.png)
 # The plotcp() function is used to visualize the cross-validation results for different complexity parameter (CP) values in the regression tree model (tree).
 This plot helps in identifying the optimal value of the complexity parameter for pruning the tree. The x-axis represents the CP values, while the y-axis represents the cross-validated error.
 The plot typically shows a U-shaped curve, and the optimal CP value is often chosen as the one that minimizes the cross-validated error.
