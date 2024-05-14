@@ -1,0 +1,114 @@
+*----------------------------------Regression Model 1 Output--------------------------------------*
+Call:
+lm(formula = training_weight ~ training_height)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-21.1661  -3.7167  -0.0432   3.6762  20.5042 
+
+Coefficients:
+                  Estimate Std. Error t value Pr(>|t|)    
+(Intercept)     -1.581e+02  1.359e+00  -116.4   <2e-16 ***
+training_height  1.372e+00  8.048e-03   170.5   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 5.541 on 4998 degrees of freedom
+Multiple R-squared:  0.8533,	Adjusted R-squared:  0.8533 
+F-statistic: 2.907e+04 on 1 and 4998 DF,  p-value: < 2.2e-16
+
+
+*----------------------------------Interpretation-------------------------------------*
+
+Residuals: Provides summary statistics of the residuals (errors) of the model. It includes the minimum, 1st quartile, median, 3rd quartile, and maximum values.
+Coefficients: Shows the estimated coefficients for the intercept and the predictor variable (training_height). It includes the estimate, standard error, t-value, and p-value for each coefficient. The significance codes indicate the level of significance.
+Residual standard error: Represents the standard deviation of the residuals, indicating the average distance of data points from the regression line.
+Multiple R-squared: Indicates the proportion of variance in the response variable explained by the model.
+Adjusted R-squared: Similar to R-squared, but adjusted for the number of predictors in the model.
+F-statistic: Assesses the overall significance of the model. It evaluates whether the overall regression model is statistically significant.
+p-value: Indicates the statistical significance of the F-statistic. A low p-value suggests that the model is statistically significant.
+
+
+
+*----------------------------------Regression Model 1 Output (fit) --------------------------------------*
+
+r.squared adj.r.squared sigma statistic p.value    df  logLik    AIC    BIC deviance df.residual  nobs
+      <dbl>         <dbl> <dbl>     <dbl>   <dbl> <dbl>   <dbl>  <dbl>  <dbl>    <dbl>       <int> <int>
+1     0.853         0.853  5.54    29071.       0     1 -15655. 31316. 31335.  153467.        4998  5000
+
+*----------------------------------Interpretation-------------------------------------*
+
+R-squared (r.squared): Indicates the proportion of variance in the response variable explained by the model. In this case, approximately 85.3% of the variance in the response variable is explained by the model.
+
+Adjusted R-squared (adj.r.squared): Similar to R-squared, but adjusted for the number of predictors in the model. It penalizes for overfitting, providing a more reliable measure of model fit. Here, it is also approximately 85.3%.
+
+Residual standard error (sigma): Represents the standard deviation of the residuals, indicating the average distance of data points from the regression line. A lower value indicates better fit.
+
+F-statistic (statistic): Assesses the overall significance of the model. A higher value suggests a more significant relationship between predictors and the response variable.
+
+p-value (p.value): Indicates the statistical significance of the F-statistic. A p-value below a chosen significance level (e.g., 0.05) suggests that the model is statistically significant.
+
+Degrees of freedom (df): Represents the degrees of freedom associated with the model.
+
+Log-likelihood (logLik): Measures the goodness of fit of the model, with higher values indicating better fit.
+
+AIC (Akaike Information Criterion): A measure of the model's goodness of fit, adjusted for the number of predictors. Lower values suggest a better balance between model complexity and fit.
+
+BIC (Bayesian Information Criterion): Similar to AIC, but penalizes model complexity more strongly. Lower values indicate better fit.
+
+Deviance: Measures the goodness of fit of the model, with lower values indicating better fit.
+
+Residual degrees of freedom (df.residual): Represents the degrees of freedom associated with the residuals.
+
+Number of observations (nobs): Indicates the total number of observations used in the model fitting process.
+
+
+
+*----------------------------------Complexity parameter (CP) table of the regression tree model tree----------------------------------*
+Regression tree:
+rpart(formula = Weight..kg. ~ Height..cm. + Gender, data = train, 
+    method = "anova")
+
+Variables actually used in tree construction:
+[1] Gender      Height..cm.
+
+Root node error: 1052633/4933 = 213.39
+
+n= 4933 
+
+        CP nsplit rel error  xerror      xstd
+1 0.635028      0   1.00000 1.00054 0.0159203
+2 0.091350      1   0.36497 0.36535 0.0073912
+3 0.086737      2   0.27362 0.27426 0.0059681
+4 0.017881      3   0.18688 0.18741 0.0041403
+5 0.015157      4   0.16900 0.16975 0.0036882
+6 0.014116      5   0.15385 0.15267 0.0033275
+7 0.013791      6   0.13973 0.14511 0.0031302
+8 0.010000      7   0.12594 0.12999 0.0027159
+
+
+*----------------------------------Interpretation-------------------------------------*
+
+This output presents the results of fitting a regression tree model to predict weight (kg) based on height (cm) and gender. Key points:
+
+The tree uses two variables: gender and height.
+The root node error is 213.39, indicating the mean squared error at the beginning of the tree.
+The table displays various measures as the tree grows, such as the complexity parameter (CP), number of splits (nsplit), relative error (rel error), cross-validated error (xerror), and the standard deviation of cross-validated error (xstd).
+As the tree grows (nsplit increases), rel error and xerror decrease, suggesting better model fit.
+CP values indicate the cost of adding another variable to the model, with smaller values indicating more complex models.
+The last row represents the model after pruning, where CP equals 0.01, indicating the chosen level of complexity for the final model.
+
+
+
+*----------------------------------Computing the RSME-------------------------------------*
+
+
+In that case, the value "5.268206" represents the root mean squared error (RMSE) between the actual and predicted values in a regression model.
+
+RMSE is a measure of the differences between predicted and observed values in a regression analysis. In this context, the RMSE value indicates the average magnitude of the prediction errors, with lower values indicating better model performance in terms of predictive accuracy.
+
+
+
+
+
+
