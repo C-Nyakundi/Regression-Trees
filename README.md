@@ -2,24 +2,24 @@
 
 Predicting weight using height and gender in regression tree models
 
-##-------------------------------Predicting weights using height & Gender------------------------------------------------
+# -------------------------------Predicting weights using height & Gender------------------------------------------------
 
 
 ##Introduction
 
 This project aims to predict individuals' weights based on their heights and genders. Understanding the relationship between these variables can provide valuable insights into health and wellness. We'll explore two approaches: linear regression and regression tree models
 
-##-------------------------------Steps to follow------------------------------------------------
+# -------------------------------Steps to follow------------------------------------------------
 
-# 1- Importing the CSV dataset
-# 2- Plotting the data (Checking for normality)
-# 3- Defining the dependent & independent variables (Intially we will not consider using gender)
-# 4- Splitting data into train and test datasets 
-# 5- Creating a linear regression model
-# 6- Checking the performance of the model
-# 7- Adding gender to the model. 
+## 1- Importing the CSV dataset
+## 2- Plotting the data (Checking for normality)
+## 3- Defining the dependent & independent variables (Intially we will not consider using gender)
+## 4- Splitting data into train and test datasets 
+## 5- Creating a linear regression model
+## 6- Checking the performance of the model
+## 7- Adding gender to the model. 
 
-#Loading libraries 
+# Loading libraries 
 library(pacman)
 pacman::p_load(tidyverse, broom, finalfit, rpart, rpart.plot, Metrics)
 #broom- used to get variable(s) & specific values in a nice tibble
@@ -30,7 +30,7 @@ pacman::p_load(tidyverse, broom, finalfit, rpart, rpart.plot, Metrics)
 # Importing dataset
 data <- read.csv("gender-height-weight.csv")
 
-##EDA
+# EDA
 class(data)
 #(dataframe)
 names(data) # Variable names
@@ -59,7 +59,7 @@ test_height <- testdata[,4]
 # Creating a linear regression model
 fit <- lm(training_weight~training_height)
 
-##Plotting the regression model 
+# Plotting the regression model 
 plot(training_height, training_weight, col='blue',xlab = 'height (cm)', ylab = 'weight (kg)')
 abline(fit, col='red')
 # This code generates a scatter plot of data points representing training_height on the x-axis and training_weight on the y-axis. 
@@ -68,7 +68,7 @@ abline(fit, col='red')
 
 
 
-##Print fit model to see the coeefficients 
+# Print fit model to see the coeefficients 
 pred_weight <- 1.372 * test_height -158.101
 
 # This code calculates predicted weights based on the formula pred_weight = 1.372 × test_height − 158.101
@@ -91,7 +91,7 @@ fit %>% glance()
 print(summary(fit))
 
 
-#--------------- Running a regression tree on the weights/heights data------------------------------
+# --------------- Running a regression tree on the weights/heights data------------------------------
 
 # Model 2: Building a regression tree
 set.seed(3846)
