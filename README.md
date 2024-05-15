@@ -2,14 +2,14 @@
 
 Predicting weight using height and gender in regression tree models
 
-# -------------------------------Predicting weights using height & Gender------------------------------------------------
+# Predicting weights using height & Gender
 
 
-##Introduction
+## Introduction
 
 This project aims to predict individuals' weights based on their heights and genders. Understanding the relationship between these variables can provide valuable insights into health and wellness. We'll explore two approaches: linear regression and regression tree models
 
-# -------------------------------Steps to follow------------------------------------------------
+# Steps to follow
 
 ## 1- Importing the CSV dataset
 ## 2- Plotting the data (Checking for normality)
@@ -20,12 +20,13 @@ This project aims to predict individuals' weights based on their heights and gen
 ## 7- Adding gender to the model. 
 
 # Loading libraries 
+
 library(pacman)
 pacman::p_load(tidyverse, broom, finalfit, rpart, rpart.plot, Metrics)
-#broom- used to get variable(s) & specific values in a nice tibble
-#finalfit- creation of final tables and reports summarizing statistical models. 
-#Metrics- for computing various evaluation metrics commonly used in machine learning and statistical analysis
-#rpart- for building classification and regression trees (CART). It implements the Recursive Partitioning and Regression Trees algorithm, which recursively splits the data into subsets based on the values of input variables, creating a decision tree.
+broom- used to get variable(s) & specific values in a nice tibble
+finalfit- creation of final tables and reports summarizing statistical models. 
+Metrics- for computing various evaluation metrics commonly used in machine learning and statistical analysis
+rpart- for building classification and regression trees (CART). It implements the Recursive Partitioning and Regression Trees algorithm, which recursively splits the data into subsets based on the values of input variables, creating a decision tree.
 
 # Importing dataset
 data <- read.csv("gender-height-weight.csv")
@@ -38,6 +39,7 @@ glimpse(data)
 sapply(data, class) # 1 (Gender) string var & weight & height (numericals)
 
 # Plotting the data 
+
 data %>%
   ggplot(aes(y=Height..cm., x=Weight..kg., colour=Gender)) +
   geom_point(alpha=0.2) +
@@ -103,39 +105,43 @@ ind <- sample(2, nrow(data), replace = T, prob = c(0.5, 0.5))
 
 train <- data[ind == 1,]
 test <- data[ind == 2,]
-# 
-# The code separates the dataset data into two subsets: a training set (train) and a test set (test). 
-# It does so by indexing the dataset using the vector ind.
-# 
-# For the training set, it selects rows where the corresponding element in the ind vector is equal to 1.
-# For the test set, it selects rows where the corresponding element in the ind vector is equal to 2.
-# This partitioning is based on the random sampling previously performed using the sample() function.
+
+The code separates the dataset data into two subsets: a training set (train) and a test set (test). 
+It does so by indexing the dataset using the vector ind.
+For the training set, it selects rows where the corresponding element in the ind vector is equal to 1.
+For the test set, it selects rows where the corresponding element in the ind vector is equal to 2.
+This partitioning is based on the random sampling previously performed using the sample() function.
 
 
 # Tree Classification 
 tree <- rpart(Weight..kg. ~ Height..cm.+Gender, data = train, method = "anova")
-# The code fits a regression tree model (rpart) to predict the weight in kilograms (Weight..kg.) based on the height in centimeters (Height..cm.) and gender (Gender) variables. 
-# The method used for splitting the tree is "anova", which indicates that the model will use analysis of variance (ANOVA) to determine the best splits for the predictor variables. 
-# The model is trained on the train dataset.
+The code fits a regression tree model (rpart) to predict the weight in kilograms (Weight..kg.) based on the height in centimeters (Height..cm.) and gender (Gender) variables. 
+The method used for splitting the tree is "anova", which indicates that the model will use analysis of variance (ANOVA) to determine the best splits for the predictor variables. 
+The model is trained on the train dataset.
+
 rpart.plot(tree, extra = 1)
-# The code generates a visual representation of the regression tree model (tree) using the rpart.plot function. 
-# The extra = 1 argument adds additional information to the plot, such as the number of observations in each node. 
-# This visualization helps in interpreting the decision-making process of the regression tree model and understanding how predictor variables are used to partition the data
 
-printcp(tree)
-# The printcp() function is used to display the complexity parameter (CP) table of the regression tree model tree. 
-# This table provides information about the complexity parameter values and corresponding measures of model complexity, such as the number of splits, relative error, and cross-validated error, for each value of the CP. 
-# It helps in selecting an appropriate CP value for pruning the tree and avoiding overfitting.
+The code generates a visual representation of the regression tree model (tree) using the rpart.plot function. 
+The extra = 1 argument adds additional information to the plot, such as the number of observations in each node. 
+This visualization helps in interpreting the decision-making process of the regression tree model and understanding how predictor variables are used to partition the data
 
-# plotcp(tree)
+# printcp(tree)
 
-![optimal value of the complexity parameter for pruning the tree](C:/Users/ELITEBOOK/OneDrive/Pictures/Documents/Data Science with R/Regression-Trees-/Regression analysis/optimal value of the complexity parameter for pruning the tree.png)
+The printcp() function is used to display the complexity parameter (CP) table of the regression tree model tree. 
+This table provides information about the complexity parameter values and corresponding measures of model complexity, such as the number of splits, relative error, and cross-validated error, for each value of the CP. 
+It helps in selecting an appropriate CP value for pruning the tree and avoiding overfitting.
 
-# The plotcp() function is used to visualize the cross-validation results for different complexity parameter (CP) values in the regression tree model (tree).
+# Identifying the optimal values of the complexity parameters 
+
+
+![optimal value of the complexity parameter for pruning the tree](https://raw.githubusercontent.com/C-Nyakundi/Regression-Trees/main/Regression%20analysis/optimal%20value%20of%20the%20complexity%20parameter%20for%20pruning%20the%20tree.png?token=GHSAT0AAAAAACRGHAS5DLMLVSTDFDVV4KDYZSE4Y6A)
+
+*The plotcp() function is used to visualize the cross-validation results for different complexity parameter (CP) values in the regression tree model (tree)*
+
 This plot helps in identifying the optimal value of the complexity parameter for pruning the tree. The x-axis represents the CP values, while the y-axis represents the cross-validated error.
 The plot typically shows a U-shaped curve, and the optimal CP value is often chosen as the one that minimizes the cross-validated error.
 
-#Generate prediction on a test set 
+# Generate prediction on a test set 
 pred <- predict(object = tree,  # Model object
                 newdata = test) # test data set
 
