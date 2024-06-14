@@ -99,7 +99,7 @@ print(summary(fit))
 set.seed(3846)
 
 ind <- sample(2, nrow(data), replace = T, prob = c(0.5, 0.5))
-# The provided code generates a vector ind of random integers representing indices. 
+The provided code generates a vector ind of random integers representing indices. 
 # Each integer is randomly sampled from the set {1, 2} with replacement, where the probability of selecting each value is equal (0.5 for each). 
 # The length of the vector ind is equal to the number of rows in the dataset data.
 
